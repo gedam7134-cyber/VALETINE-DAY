@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💘</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  overflow:hidden;
+}
+
+/* 💕 floating hearts (continuous) */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:22px;
+  animation:floatUp 7s linear forwards;
+  opacity:0.8;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-110vh);opacity:0}
+}
+
+/* 🔄 slider */
+.slider{
+  width:400%;
+  height:100vh;
+  display:flex;
+  transition:transform 1.2s ease-in-out; /* ✨ smooth animation */
+}
+.slide{
+  width:100vw;
+  height:100vh;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  box-sizing:border-box;
+}
+
+/* buttons */
+.btn{
+  padding:10px 22px;
+  border:none;
+  border-radius:25px;
+  font-size:15px;
+  margin:8px;
+  cursor:pointer;
+}
+.yes{background:#ff4d6d;color:white}
+.no{background:#eee;color:#333;position:absolute}
+.next{background:white;color:#ff4d6d}
+
+/* photos */
+.photos{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+.photos img{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+/* video */
+video{
+  width:280px;
+  border-radius:16px;
+  margin-top:12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 hidden soft music -->
+ <audio controls>
+  <source src="song.mp4.mp4" type="audio/mp4">
+  Your browser does not support audio.
+</audio>
+<audio id="music" autoplay loop>
+  <source src="song.mp4.mp4" type="audio/mpeg">
+</audio>
+
+<div class="slider" id="slider">
+
+<!-- SLIDE 1 -->
+<div class="slide">
+  <h1>HARSHAL 💖</h1>
+  <h2>Happy Valentine’s Day 🌹</h2>
+  <p>
+    I want to ask you something…<br>
+    something straight from my heart.
+  </p>
+
+  <button class="btn yes" onclick="yesClick()">Yes 💕</button>
+  <button class="btn no" id="noBtn">No 🙈</button>
+  <button class="btn next" onclick="nextSlide()">Next ➡️</button>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide">
+  <h2>Our Memories 📸</h2>
+  <p>
+    These moments may look simple,<br>
+    but for me they hold my favorite smiles,<br>
+    my safest feelings… you.
+  </p>
+  <div class="photos">
+    <img src="AH1.jpeg" height="300" width="300">
+    <img src="AH2.jpeg" height="300" width="300">
+    <img src="AH3.jpeg" height="300" width="300">
+    <img src="AH4.jpeg" height="300" width="300">
+  </div>
+  <button class="btn next" onclick="nextSlide()">Next ➡️</button>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide">
+  <h2>Us 🎥</h2>
+  <p>
+    Every time I watch this,<br>
+    I fall for you a little more.
+  </p>
+  <video controls>
+    <source src="AH.MP3.mp4" type="video/mp4">
+  </video>
+  <button class="btn next" onclick="nextSlide()">Next ➡️</button>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide">
+  <h2>For You ❤️</h2>
+  <p>
+    You are my quiet comfort,<br>
+    my favorite feeling,<br>
+    my always.
+  </p>
+  <p>
+    No noise, no rush…<br>
+    just me choosing you,<br>
+    every single day.<br>
+    I LOVE YOU HARSHAL!
+  </p>
+</div>
+</div>
+
+<script>
+/* smooth slider control */
+let slideIndex=0;
+function nextSlide(){
+  slideIndex++;
+  document.getElementById("slider").style.transform =
+  "translateX(-"+slideIndex*100+"vw)";
+}
+
+/* yes button */
+function yesClick(){
+  alert("You just made my heart smile 💕");
+}
+
+/* no button runs away */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+  noBtn.style.left=Math.random()*80+"vw";
+  noBtn.style.top=Math.random()*80+"vh";
+});
+
+/* 💕 continuous floating hearts till end */
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=Math.random()*20+16+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+}
+setInterval(createHeart,300);
+
+/* 🔈 quiet music */
+const music=document.getElementById("music");
+music.volume=0.12;
+</script>
+
+</body>
+</html>
